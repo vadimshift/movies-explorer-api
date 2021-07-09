@@ -13,7 +13,6 @@ mongoose.connect('mongodb://localhost:27017/bitfilmsdb', {
   useFindAndModify: false,
 });
 
-
 app.use(requestLogger); // подключение логгера запросов
 app.use(errorLogger); // подключение логгера ошибок
 
