@@ -1,0 +1,31 @@
+{
+  "name": "movies-explorer-api",
+  "version": "1.0.0",
+  "description": "movies-explorer",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "npx eslint",
+    "dev": "nodemon app.js",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vadimshift/movies-explorer-api.git"
+  },
+  "author": "Vadim Yuzmekhametov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vadimshift/movies-explorer-api/issues"
+  },
+  "homepage": "https://github.com/vadimshift/movies-explorer-api#readme",
+  "dependencies": {
+    "eslint": "^7.30.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.23.4",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.10"
+  }
+}
