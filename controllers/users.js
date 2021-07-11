@@ -100,9 +100,15 @@ function login(req, res, next) {
     .catch(next);
 }
 
+function logout(req, res, next) {
+  res.clearCookie('jwt');
+  return res.send({ message: 'Выполнен выход' });
+}
+
 module.exports = {
   getUser,
   updateUser,
   createUser,
   login,
+  logout,
 };
