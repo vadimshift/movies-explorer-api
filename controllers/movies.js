@@ -54,6 +54,7 @@ function createMovie(req, res, next) {
     nameRU,
     nameEN,
     thumbnail,
+    owner: req.user._id,
     movieId,
   })
     .then((movie) => res.status(201).send(movie))
