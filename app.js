@@ -10,6 +10,7 @@ const helmet = require('helmet');
 const auth = require('./middlewares/auth');
 const userRoutes = require('./routes/users');
 const movieRoutes = require('./routes/movies');
+const { validateUserBody, validateAuthentication } = require('./middlewares/validators');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const {
@@ -48,8 +49,8 @@ app.use(helmet());
 app.use(cors(corsOptions));
 app.use(requestLogger); // подключение логгера запросов
 
-app.post('/signin', login);
-app.post('/signup', createUser);
+app.post('/signin', validateAuthentication, login);
+app.post('/signup', validateUserBody, createUser);
 
 app.use(auth);
 
