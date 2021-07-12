@@ -36,7 +36,11 @@ mongoose.connect('mongodb://localhost:27017/bitfilmsdb', {
   useFindAndModify: false,
 });
 
-const whitelist = ['http://localhost:3000', 'http://localhost:3001'];
+const whitelist = [
+  'http://api.vadim.movies-explorer.nomoredomains.rocks',
+  'https://api.vadim.movies-explorer.nomoredomains.rocks',
+  'http://localhost:3000',
+  'http://localhost:3001'];
 const corsOptions = {
   origin: whitelist,
   credentials: true,
