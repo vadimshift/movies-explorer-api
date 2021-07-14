@@ -7,7 +7,7 @@ const {
   NotFoundError,
   BadRequestError,
   ValidationError,
-  DuplicateEmailError,
+  ConflictError,
   UnauthorizedError,
 } = require('../middlewares/errors');
 
@@ -61,7 +61,7 @@ function createUser(req, res, next) {
         throw new ValidationError('Переданы некорректные данные при создании пользователя');
       } else if
       (err.name === 'MongoError') {
-        throw new DuplicateEmailError('Пользователь с таким email уже зарегистрирован');
+        throw new ConflictError('Пользователь с таким email уже зарегистрирован');
       } else {
         next(err);
       }

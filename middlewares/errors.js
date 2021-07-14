@@ -12,7 +12,7 @@ class BadRequestError extends Error {
   }
 }
 
-class DuplicateEmailError extends Error {
+class ConflictError extends Error {
   constructor(message) {
     super(message);
     this.statusCode = 409;
@@ -36,7 +36,7 @@ class RuleError extends Error {
 module.exports = {
   NotFoundError,
   BadRequestError,
-  DuplicateEmailError,
+  ConflictError,
   UnauthorizedError,
   RuleError,
 };

@@ -1,5 +1,4 @@
-/* eslint-disable no-unused-vars */
-module.exports = (err, req, res, next) => {
+module.exports = (err, req, res) => {
   // если у ошибки нет статуса, выставляем 500
   const { statusCode = 500, message } = err;
   res

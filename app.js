@@ -54,7 +54,6 @@ app.use(limiter);
 app.use(helmet());
 app.use(cors(corsOptions));
 
-
 app.post('/signin', validateAuthentication, login);
 app.post('/signup', validateUserBody, createUser);
 
