@@ -2,6 +2,8 @@
     "extends": "airbnb-base",
     "rules": {
        "no-underscore-dangle": ["error", { "allow": ["_id"] }],
-       "linebreak-style": 0 
+       "linebreak-style": 0,
+       "max-classes-per-file": ["error", 6],
+       "consistent-return": "off"
     }
   }

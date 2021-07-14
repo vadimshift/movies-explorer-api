@@ -1,4 +1,3 @@
-/* eslint-disable no-useless-escape */
 const { celebrate, Joi } = require('celebrate');
 
 const validateUserBody = celebrate({

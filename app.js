@@ -23,6 +23,8 @@ const processingErrors = require('./middlewares/processingErrors');
 const { PORT = 3000 } = process.env;
 const app = express();
 
+app.use(requestLogger); // подключение логгера запросов
+
 const limiter = rateLimit({
   windowMs: 30 * 60 * 1000,
   max: 200,
@@ -51,7 +53,7 @@ app.use(cookieParser());
 app.use(limiter);
 app.use(helmet());
 app.use(cors(corsOptions));
-app.use(requestLogger); // подключение логгера запросов
+
 
 app.post('/signin', validateAuthentication, login);
 app.post('/signup', validateUserBody, createUser);

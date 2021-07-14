@@ -45,7 +45,7 @@ function updateUser(req, res, next) {
 
 function createUser(req, res, next) {
   const {
-    name, email, password,
+    name, email,
   } = req.body;
   bcrypt.hash(req.body.password, 10)
     .then((hash) => User.create({
@@ -98,7 +98,7 @@ function login(req, res, next) {
     .catch(next);
 }
 
-function logout(req, res, next) {
+function logout(req, res) {
   res.clearCookie('jwt');
   return res.send({ message: 'Выполнен выход' });
 }
