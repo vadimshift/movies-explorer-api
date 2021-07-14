@@ -59,7 +59,7 @@ function createMovie(req, res, next) {
     .then((movie) => res.status(201).send(movie))
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        throw new BadRequestError('Переданы некорректные данные при создании карточки');
+        next(new BadRequestError('Переданы некорректные данные при создании карточки'));
       } else {
         next(err);
       }

@@ -16,7 +16,7 @@ function getUser(req, res, next) {
     .then((data) => res.send(data))
     .catch((err) => {
       if (err.name === 'CastError') {
-        throw new NotFoundError('Пользователь по указанному id не найден');
+        next(new NotFoundError('Пользователь по указанному id не найден'));
       } else {
         next(err);
       }
@@ -35,7 +35,7 @@ function updateUser(req, res, next) {
     .then((data) => res.send(data))
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        throw new BadRequestError('Переданы некорректные данные при обновлении профиля пользователя');
+        next(new BadRequestError('Переданы некорректные данные при обновлении профиля пользователя'));
       } else {
         next(err);
       }
@@ -58,10 +58,10 @@ function createUser(req, res, next) {
     ))
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        throw new ValidationError('Переданы некорректные данные при создании пользователя');
+        next(new ValidationError('Переданы некорректные данные при создании пользователя'));
       } else if
       (err.name === 'MongoError') {
-        throw new ConflictError('Пользователь с таким email уже зарегистрирован');
+        next(new ConflictError('Пользователь с таким email уже зарегистрирован'));
       } else {
         next(err);
       }
