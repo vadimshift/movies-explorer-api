@@ -1,4 +1,3 @@
-/* eslint-disable no-shadow */
 const Movie = require('../models/movie');
 const {
   NotFoundError,
@@ -16,8 +15,8 @@ function delMovie(req, res, next) {
   const currentUser = req.user._id; // id текущего пользователя
   const { movieId } = req.params; // id карточки из запроса
   Movie.findById(movieId)
-    .then((movie) => {
-      const cardOwner = movie.owner.toString();
+    .then((card) => {
+      const cardOwner = card.owner.toString();
       if (currentUser === cardOwner) {
         Movie.findByIdAndRemove(movieId)
           .then((movie) => res.send({ data: movie }));
