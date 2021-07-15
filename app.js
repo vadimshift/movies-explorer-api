@@ -7,17 +7,8 @@ const cookieParser = require('cookie-parser');
 const { errors } = require('celebrate');
 const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
-const auth = require('./middlewares/auth');
-const userRoutes = require('./routes/users');
-const movieRoutes = require('./routes/movies');
-const { validateUserBody, validateAuthentication } = require('./middlewares/validators');
+const router = require('./routes/index');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-
-const {
-  createUser,
-  login,
-} = require('./controllers/users');
-const { NotFoundError } = require('./middlewares/errors');
 const processingErrors = require('./middlewares/processingErrors');
 
 const { PORT = 3000 } = process.env;
@@ -54,17 +45,7 @@ app.use(limiter);
 app.use(helmet());
 app.use(cors(corsOptions));
 
-app.post('/signin', validateAuthentication, login);
-app.post('/signup', validateUserBody, createUser);
-
-app.use(auth);
-
-app.use(userRoutes);
-app.use(movieRoutes);
-
-app.use('/', (req, res, next) => {
-  next(new NotFoundError('Страница не найдена'));
-});
+app.use(router); // подключение маршрутов
 
 app.use(errorLogger); // подключение логгера ошибок
 app.use(errors()); // ошибки celebrate
