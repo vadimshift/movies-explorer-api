@@ -11,12 +11,14 @@ const router = require('./routes/index');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const processingErrors = require('./middlewares/processingErrors');
 
+const { NODE_ENV, DB_CONN, PORT } = process.env;
+
 const app = express();
 
 app.use(requestLogger); // подключение логгера запросов
 
 // подключаемся к серверу mongo
-mongoose.connect(process.env.DB_CONN, {
+mongoose.connect(NODE_ENV === 'production' ? DB_CONN : 'mongodb://localhost:27017/bitfilmsdb', {
   useNewUrlParser: true,
   useCreateIndex: true,
   useUnifiedTopology: true,
@@ -44,4 +46,4 @@ app.use(router); // подключение маршрутов
 app.use(errorLogger); // подключение логгера ошибок
 app.use(errors()); // ошибки celebrate
 app.use(processingErrors); // обработка ошибок
-app.listen(process.env.PORT);
+app.listen(NODE_ENV === 'production' ? PORT : '3000');
