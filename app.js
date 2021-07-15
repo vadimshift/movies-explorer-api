@@ -11,7 +11,6 @@ const router = require('./routes/index');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const processingErrors = require('./middlewares/processingErrors');
 
-const { PORT = 3000 } = process.env;
 const app = express();
 
 app.use(requestLogger); // подключение логгера запросов
@@ -45,4 +44,4 @@ app.use(router); // подключение маршрутов
 app.use(errorLogger); // подключение логгера ошибок
 app.use(errors()); // ошибки celebrate
 app.use(processingErrors); // обработка ошибок
-app.listen(PORT);
+app.listen(process.env.PORT);
