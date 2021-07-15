@@ -15,13 +15,12 @@ function delMovie(req, res, next) {
   const currentUser = req.user._id; // id текущего пользователя
   const { movieId } = req.params; // id карточки из запроса
   Movie.findById(movieId)
-    .then((card) => {
-      const cardOwner = card.owner.toString();
-      if (currentUser === cardOwner) {
-        Movie.findByIdAndRemove(movieId)
-          .then((movie) => res.send({ data: movie }));
-      } else {
+    .then((movie) => {
+      const movieOwner = movie.owner.toString();
+      if (currentUser !== movieOwner) {
         next(new RuleError('Нет прав на удаление данного фильма'));
+      } else {
+        return movie.remove().then(() => res.send({ data: movie }));
       }
     })
     .catch(() => next(new NotFoundError('Фильм с указанным _id не найден')))
