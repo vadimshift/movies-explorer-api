@@ -91,6 +91,7 @@ function login(req, res, next) {
               maxAge: 3600000 * 24 * 7,
               httpOnly: true,
             })
+            .send({ message: 'Успешный логин' })
             .end();
         });
     })
