@@ -28,6 +28,8 @@ mongoose.connect(NODE_ENV === 'production' ? DB_CONN : 'mongodb://localhost:2701
 const whitelist = [
   'http://api.vadim.movies-explorer.nomoredomains.rocks',
   'https://api.vadim.movies-explorer.nomoredomains.rocks',
+  'http://vadim.movies-explorer.nomoredomains.rocks',
+  'https://vadim.movies-explorer.nomoredomains.rocks',
   'http://localhost:3000',
   'http://localhost:3001'];
 const corsOptions = {
