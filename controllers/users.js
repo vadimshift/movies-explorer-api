@@ -113,12 +113,12 @@ function login(req, res, next) {
         const token = jwt.sign(
           { _id: user._id },
           NODE_ENV === "production" ? JWT_SECRET : "dev-secret",
-          { expiresIn: "7d" }
+          { expiresIn: "8d" }
         );
         // возвращаем токен в куки, срок жизни 7 дней
         res
           .cookie("jwt", token, {
-            maxAge: 3600000 * 24 * 7,
+            maxAge: 3600000 * 24 * 8,
             secure: true,
             httpOnly: true,
             sameSite: "none",
