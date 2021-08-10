@@ -33,7 +33,7 @@ const whitelist = [
   'http://localhost:3000',
   'http://localhost:3001'];
 const corsOptions = {
-  origin: [whitelist],
+  origin: ['*'],
   allowedHeaders: ['Content-Type', 'origin', 'Authorization']
 
 };
