@@ -12,8 +12,25 @@ const processingErrors = require("./middlewares/processingErrors");
 
 const { NODE_ENV, DB_CONN, PORT } = process.env;
 
+const corsOptions = {
+  origin: [
+    "http://api.vadim.movies-explorer.nomoredomains.rocks",
+    "https://api.vadim.movies-explorer.nomoredomains.rocks",
+    "http://vadim.movies-explorer.nomoredomains.rocks",
+    "https://vadim.movies-explorer.nomoredomains.rocks",
+    "http://localhost:3000",
+    "http://localhost:3001",
+  ],
+  methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
+  allowedHeaders: ["Content-Type", "origin", "Authorization", "Accept"],
+  credentials: true,
+};
+
 const app = express();
-app.use(cors());
+
+app.use(cors(corsOptions));
 app.use(requestLogger); // подключение логгера запросов
 
 // подключаемся к серверу mongo
@@ -27,18 +44,7 @@ mongoose.connect(
   }
 );
 
-/* const whitelist = [
-  'http://api.vadim.movies-explorer.nomoredomains.rocks',
-  'https://api.vadim.movies-explorer.nomoredomains.rocks',
-  'http://vadim.movies-explorer.nomoredomains.rocks',
-  'https://vadim.movies-explorer.nomoredomains.rocks',
-  'http://localhost:3000',
-  'http://localhost:3001']; */
-/* const corsOptions = {
-  origin: ['*'],
-  allowedHeaders: ['Content-Type', 'origin', 'Authorization']
 
-}; */
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
