@@ -14,12 +14,8 @@ const { NODE_ENV, DB_CONN, PORT } = process.env;
 
 const corsOptions = {
   origin: [
-    "http://api.vadim.movies-explorer.nomoredomains.rocks",
-    "https://api.vadim.movies-explorer.nomoredomains.rocks",
-    "http://vadim.movies-explorer.nomoredomains.rocks",
     "https://vadim.movies-explorer.nomoredomains.rocks",
     "http://localhost:3000",
-    "http://localhost:3001",
   ],
   methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
   preflightContinue: false,
