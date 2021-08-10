@@ -119,9 +119,7 @@ function login(req, res, next) {
         res
           .cookie("jwt", token, {
             maxAge: 3600000 * 24 * 7,
-            secure: true,
             httpOnly: true,
-            sameSite: "none",
           })
           .send({ user })
           .end();
