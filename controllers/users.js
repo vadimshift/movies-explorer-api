@@ -109,28 +109,17 @@ function login(req, res, next) {
           );
         }
         // аутентификация успешна
-        // создаем токенyg
+        // создаем токен
         const token = jwt.sign(
           { _id: user._id },
           NODE_ENV === "production" ? JWT_SECRET : "dev-secret",
           { expiresIn: "7d" }
         );
         // возвращаем токен в куки, срок жизни 7 дней
-        res
-          .cookie("jwt", token, {
-            maxAge: 3600000 * 24 * 7,
-            httpOnly: true,
-          })
-          .send({ user })
-          .end();
+        res.send({ token }).end();
       });
     })
     .catch(next);
-}
-
-function logout(req, res) {
-  res.clearCookie("jwt");
-  return res.send({ message: "Выполнен выход" });
 }
 
 module.exports = {
