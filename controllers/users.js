@@ -109,7 +109,7 @@ function login(req, res, next) {
           );
         }
         // аутентификация успешна
-        // создаем токен
+        // создаем токенyg
         const token = jwt.sign(
           { _id: user._id },
           NODE_ENV === "production" ? JWT_SECRET : "dev-secret",
