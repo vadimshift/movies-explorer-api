@@ -25,22 +25,22 @@ mongoose.connect(NODE_ENV === 'production' ? DB_CONN : 'mongodb://localhost:2701
   useFindAndModify: false,
 });
 
-const whitelist = [
+/* const whitelist = [
   'http://api.vadim.movies-explorer.nomoredomains.rocks',
   'https://api.vadim.movies-explorer.nomoredomains.rocks',
   'http://vadim.movies-explorer.nomoredomains.rocks',
   'https://vadim.movies-explorer.nomoredomains.rocks',
   'http://localhost:3000',
-  'http://localhost:3001'];
-const corsOptions = {
+  'http://localhost:3001']; */
+/* const corsOptions = {
   origin: ['*'],
   allowedHeaders: ['Content-Type', 'origin', 'Authorization']
 
-};
+}; */
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(limiter);
 app.use(helmet());
 
