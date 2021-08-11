@@ -10,9 +10,11 @@ const router = require("./routes/index");
 const { requestLogger, errorLogger } = require("./middlewares/logger");
 const processingErrors = require("./middlewares/processingErrors");
 
+const app = express();
+
 const { NODE_ENV, DB_CONN, PORT } = process.env;
 
-const corsOptions = {
+/* const corsOptions = {
   origin: [
     "https://vadim.movies-explorer.nomoredomains.rocks",
     "http://localhost:3000",
@@ -22,12 +24,10 @@ const corsOptions = {
   optionsSuccessStatus: 204,
   allowedHeaders: ["Content-Type", "origin", "Authorization", "Accept"],
   credentials: true,
-};
+}; */
 
-const app = express();
-
-app.use(cors(corsOptions));
-app.use(requestLogger); // подключение логгера запросов
+app.use(cors());
+app.use(helmet());
 
 // подключаемся к серверу mongo
 mongoose.connect(
@@ -43,9 +43,9 @@ mongoose.connect(
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(requestLogger); // подключение логгера запросов
+/* app.use(limiter); */
 
-app.use(limiter);
-app.use(helmet());
 
 app.use(router); // подключение маршрутов
 
