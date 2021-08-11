@@ -31,8 +31,8 @@ mongoose.connect(
 const whitelist = [
   "http://api.vadim.movies-explorer.nomoredomains.rocks",
   "https://api.vadim.movies-explorer.nomoredomains.rocks",
-  "https://api.vadim.movies-explorer.nomoredomains.rocks",
-  "https://api.vadim.movies-explorer.nomoredomains.rocks",
+  "https://vadim.movies-explorer.nomoredomains.rocks",
+  "https://vadim.movies-explorer.nomoredomains.rocks",
   "http://localhost:3000",
   "http://localhost:3001",
 ];
