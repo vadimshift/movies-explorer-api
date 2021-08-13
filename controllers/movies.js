@@ -6,7 +6,7 @@ const {
 } = require('../middlewares/errors');
 
 function getMovies(req, res, next) {
-  Movie.find({})
+  Movie.find({owner: req.user._id})
     .then((data) => res.send(data))
     .catch(next);
 }
